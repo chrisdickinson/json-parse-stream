@@ -51,6 +51,11 @@ var _ = 0
   , TOKEN_ARRAY_END = _++
   , TOKEN_COMMA = _++
 
+var TYPES = {}
+
+TYPES[VALUE_OBJECT] = 'object'
+TYPES[VALUE_ARRAY] = 'array'
+
 function parse() {
   var stream = through(write, end)
     , stack = [{mode: VALUE, value: null}]
@@ -71,8 +76,20 @@ function parse() {
 
   function shift() {
     var out = stack.shift()
+      , real
+
+    real = {
+        value: out.value
+      , key: out.key
+      , parent: out.parent
+      , type: out.value === null ? 'null' :
+              out.mode === VALUE ? typeof out.value :
+              TYPES[out.mode]
+    }
+
+
     keys.shift()
-    stream.queue(out)
+    stream.queue(real)
     if(!stack.length) {
       return stream.queue(null)
     }
