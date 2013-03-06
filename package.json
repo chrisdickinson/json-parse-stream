@@ -1,0 +1,29 @@
+{
+  "name": "json-parse-stream",
+  "version": "0.0.0",
+  "description": "streaming json parser",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/chrisdickinson/json-parse-stream.git"
+  },
+  "keywords": [
+    "json",
+    "parse",
+    "readable",
+    "stream"
+  ],
+  "author": "Chris Dickinson <chris@neversaw.us>",
+  "license": "MIT",
+  "dependencies": {
+    "through": "~2.2.1",
+    "duplex": "~1.0.0",
+    "emit-function": "0.0.2"
+  },
+  "devDependencies": {
+    "tape": "~0.2.2"
+  }
+}
