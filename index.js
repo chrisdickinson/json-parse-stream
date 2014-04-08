@@ -306,13 +306,12 @@ function tokenize() {
       if(!/[a-fA-F0-9]/.test(c)) {
         return error()
       }
-      --unicode_remaining
-      if(!unicode_remaining) {
+      unicode_character[unicode_character.length] = c
+      if(unicode_remaining == 1) {
         accum[accum.length] = String.fromCharCode(parseInt(unicode_character.join(''), 16))
         unicode_character.length = 0
-      } else {
-        unicode_character[unicode_character.length] = c
-      }
+      } 
+      --unicode_remaining
       return
     }
 
