@@ -121,3 +121,27 @@ test('test bad strings', function(assert) {
   assert.equal(ecount, bad.length)
   assert.end()
 })
+
+test('unicode character in string', function(assert) {
+  var p = parses()
+    , expected = [ {key: '\u0002hey', value: 'guys\u0003'}
+                  ,{value: {'\u0002hey': 'guys\u0003'}} 
+                  ]
+    
+  p.on('data', check)
+
+  p.write('{')
+  p.write('"\\u0002hey"')
+  p.write(':')
+  p.write('"guys\\u0003"')
+  p.write('}')
+  p.end()
+
+  assert.end()
+
+  function check(data) {
+    var next = expected.shift()
+    assert.equal(data.key, next.key)
+    assert.equal(data.value, next.value) 
+  }
+})
