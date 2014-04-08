@@ -142,6 +142,6 @@ test('unicode character in string', function(assert) {
   function check(data) {
     var next = expected.shift()
     assert.equal(data.key, next.key)
-    assert.equal(data.value, next.value) 
+    assert.deepEqual(data.value, next.value) 
   }
 })
