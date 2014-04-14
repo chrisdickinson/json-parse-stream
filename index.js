@@ -307,7 +307,8 @@ function tokenize() {
         return error()
       }
       unicode_character[unicode_character.length] = c
-      if(unicode_remaining == 1) {
+
+      if(unicode_remaining === 1) {
         accum[accum.length] = String.fromCharCode(parseInt(unicode_character.join(''), 16))
         unicode_character.length = 0
       } 
